@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <title>仪表盘</title>
+    <style>
+        body {
+            /* background-color: rgb(31, 24, 92); */
+            /* color: #05C3F9; */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main" style="width: 610px;height:718px;"></div>
+    <script src="./js/jquery.js"></script>
+    <script src="./js/echarts.min.js"></script>
+
+    <script>
+        var myChart = echarts.init(document.getElementById('main'));
+        // myChart.showLoading();
+        option = {
+            backgroundColor: 'rgba(0,0,0,0)',
+            tooltip: {
+                formatter: "{a} <br/>{c} {b}"
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    restore: {
+                        show: true
+                    },
+                    saveAsImage: {
+                        show: true
+                    }
+                }
+            },
+            series: [{
+                name: '空间占用率',
+                type: 'gauge',
+                z: 3,
+                min: 0,
+                max: 100,
+                splitNumber: 10,
+                radius: '57%', //图例大小
+                axisLine: { // 坐标轴线
+                    lineStyle: { // 属性lineStyle控制线条样式
+                        width: 20,
+                        color: [
+                            [0.3, '#db4d53'],
+                            [0.7, '#2eee92'],
+                            [1, '#0090ff']
+                        ],
+                    }
+                },
+                axisTick: { // 坐标轴小标记
+                    length: 30, // 属性length控制线长
+                    lineStyle: { // 属性lineStyle控制线条样式
+                        color: 'auto',
+                    }
+                },
+                splitLine: { // 分隔线
+                    length: 30, // 属性length控制线长
+                    lineStyle: { // 属性lineStyle（详见lineStyle）控制线条样式
+                        color: 'auto'
+                    }
+                },
+                axisLabel: {
+                    fontSize: 14
+                },
+                detail: {
+                    textStyle: { // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                        fontWeight: 'bolder'
+                    },
+                    formatter: '{value}%'
+                },
+                title: {
+                    color: "#ccc",
+                    // fontWeight: 'bolder',
+                    fontSize: 18,
+                },
+                data: [{
+                    value: 40,
+                    name: '空间占用率',
+
+                }]
+            }]
+        };
+
+        setInterval(function () {
+            option.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
+            myChart.setOption(option, true);
+        }, 2000);
+    </script>
+
+
+</body>
+
+</html>

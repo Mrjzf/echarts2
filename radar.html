@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <title>雷达图</title>
+    <style>
+        body {
+            background-color: rgb(31, 24, 92);
+            /* color: #05C3F9; */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main" style="width: 551px;height:242px;"></div>
+    <script src="./js/jquery.js"></script>
+    <script src="./js/echarts.min.js"></script>
+
+    <script>
+        var myChart = echarts.init(document.getElementById('main'));
+        // myChart.showLoading();
+        option = {
+            backgroundColor: 'rgba(0,0,0,0)',
+            color: ['#f9db50', '#5f7af7', '#ff7d50'],
+            title: {
+                text: ''
+            },
+            toolbox: {
+                left: 'center',
+                feature: {
+                    restore: {},
+                    saveAsImage: {}
+                }
+            },
+            tooltip: {},
+            radar: {
+                // shape: 'circle',
+                axisLine: {
+                    lineStyle: {
+                        color: 'rgba(238, 197, 102, 0.5)'
+                    }
+                },
+                name: {
+                    color: '#fff',
+                    fontSize: 14,
+                    padding: [3, 5]
+                },
+                indicator: [{
+                        name: '访问总量',
+                    },
+                    {
+                        name: '参与人次',
+                        max: 16000
+                    },
+                    {
+                        name: '分享总量',
+                        max: 30000
+                    }
+
+                ],
+                splitLine: {
+                    lineStyle: {
+                        color: [
+                            'rgba(2, 87, 151, .1)',
+                            'rgba(2, 87, 151, .2)',
+                            'rgba(2, 87, 151, .4)',
+                            'rgba(2, 87, 151, .6)',
+                            'rgba(2, 87, 151, .8)',
+                            'rgba(2, 87, 151, 1)',
+                        ].reverse()
+                    }
+                },
+                splitArea: {
+                    show: false
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: 'rgba(2, 87, 151, .5)',
+                    }
+                }
+            },
+            series: [{
+                name: '访问量',
+                type: 'radar',
+                // areaStyle: {normal: {}},
+
+                data: [{
+                        value: [4300, 10000, 28000],
+                        name: '访问总量'
+                    },
+                    {
+                        value: [5000, 14000, 28000],
+                        name: '参与人次'
+                    },
+                    {
+                        value: [1000, 8000, 20000],
+                        name: '分享总量'
+                    }
+                ]
+            }]
+        };
+
+        myChart.setOption(option);
+    </script>
+
+
+</body>
+
+</html>

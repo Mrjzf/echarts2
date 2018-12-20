@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <title>radioBar</title>
+    <style>
+        body {
+            background-color: rgb(31, 24, 92);
+            /* color: #05C3F9; */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main" style="width: 413px;height:352px;"></div>
+    <script src="./js/jquery.js"></script>
+    <script src="./js/echarts.min.js"></script>
+
+    <script>
+        var myChart = echarts.init(document.getElementById('main'));
+        // myChart.showLoading();
+
+        var data = [{
+                "name": "镇村",
+                "value": 10
+            }, {
+                "name": "党政办",
+                "value": 20
+            }, {
+                "name": "组织办",
+                "value": 30
+            }, {
+                "name": "宣传办",
+                "value": 40
+            }, {
+                "name": "纪委",
+                "value": 50
+            }, {
+                "name": "人大",
+                "value": 22
+            }, {
+                "name": "工会",
+                "value": 32
+            },
+            {
+                "name": "妇联",
+                "value": 72
+            },
+            {
+                "name": "党校",
+                "value": 62
+            },
+            {
+                "name": "民政",
+                "value": 48
+            },
+            {
+                "name": "环保",
+                "value": 56
+            }
+        ];
+        var xData = [],
+            yData = [];
+        var min = 0;
+        data.map(function (a, b) {
+            xData.push(a.name);
+            if (a.value === 0) {
+                yData.push(a.value + min);
+            } else {
+                yData.push(a.value);
+            }
+        });
+        option = {
+            backgroundColor: "rgba(0,0,0,0)", //图层背景
+            color: ['#3398DB'],
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'line',
+                    lineStyle: {
+                        opacity: 0
+                    }
+                },
+                formatter: function (prams) {
+                    if (prams[0].data === min) {
+                        return "日发布"
+                    } else {
+                        return "日发布：" + prams[0].data
+                    }
+                }
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    dataZoom: {},
+                    dataView: {
+                        readOnly: false
+                    },
+                    magicType: {
+                        type: ['line', 'bar']
+                    },
+                    restore: {},
+                    saveAsImage: {
+                        pixelRatio: 5
+                    }
+                }
+            },
+            legend: {
+                // data: ['直接访问', '背景'],
+                show: false
+            },
+            grid: {
+                left: '0%',
+                right: '0%',
+                bottom: '5%',
+                top: '7%',
+                height: '85%',
+                containLabel: true,
+                z: 22
+            },
+            xAxis: [{
+                type: 'category',
+                gridIndex: 0,
+                data: xData,
+                axisTick: {
+                    alignWithLabel: true
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#04366e'
+                    }
+                },
+                axisLabel: {
+                    show: true,
+                    color: '#8ec4e9',
+                    fontSize: 12
+                }
+            }],
+            yAxis: [{
+                    type: 'value',
+                    gridIndex: 0,
+                    splitLine: {
+                        show: false
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                    min: min,
+                    max: 80,
+                    axisLine: {
+                        lineStyle: {
+                            color: '#04366e'
+                        }
+                    },
+                    axisLabel: {
+                        color: '#8ec4e9',
+                        formatter: '{value}'
+                    }
+                },
+                {
+                    type: 'value',
+                    gridIndex: 0,
+                    min: min,
+                    max: 100,
+                    splitNumber: 14,
+                    splitLine: {
+                        show: false
+                    },
+                    axisLine: {
+                        show: false
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                    axisLabel: {
+                        show: false
+                    },
+                    splitArea: {
+                        show: true,
+                        areaStyle: {
+                            color: ['rgba(250,250,250,0.0)', 'rgba(2,104,178,0.05)']
+                        }
+                    }
+                }
+            ],
+            series: [{
+                    name: '日排行',
+                    type: 'bar',
+                    barWidth: '30%',
+                    xAxisIndex: 0,
+                    yAxisIndex: 0,
+                    itemStyle: {
+                        normal: {
+                            barBorderRadius: 30,
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1, [{
+                                        offset: 0,
+                                        color: '#fee300'
+                                    },
+                                    {
+                                        offset: 1,
+                                        color: '#fc3d3b'
+                                    }
+                                ]
+                            )
+                        }
+                    },
+                    data: yData,
+                    zlevel: 11
+                },
+                {
+                    name: '背景',
+                    type: 'bar',
+                    barWidth: '50%',
+                    xAxisIndex: 0,
+                    yAxisIndex: 1,
+                    barGap: '-135%',
+                    data: [100, 100, 100, 100, 100, 100, 100, 100, 100],
+                    itemStyle: {
+                        normal: {
+                            color: 'rgba(2,104,178,0.1)'
+                        }
+                    },
+                    zlevel: 9
+                },
+
+            ]
+        };
+
+        myChart.setOption(option);
+    </script>
+
+
+</body>
+
+</html>

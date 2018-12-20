@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <title>index</title>
+</head>
+
+<body>
+    <div id="main" style="width: 528px;height:460px;"></div>
+    <script src="./js/jquery.js"></script>
+    <script src="./js/echarts.min.js"></script>
+
+    <script>
+        var myChart = echarts.init(document.getElementById('main'));
+        var data = [{
+                name: '交通旅游',
+                value: '20'
+            },
+            {
+                name: '休闲娱乐',
+                value: '60'
+            }
+        ];
+        var data_name = [];
+        for (var n in data) {
+            data[n]['name'] = data[n]['name'] + ' ' + data[n]['value'] + '%';
+            data_name.push(data[n]['name'])
+        }
+        var option = {
+            color: ['#db4d4c', '#12dc9a'],
+            tooltip: {
+                trigger: 'item',
+                backgroundColor: 'rgba(255,255,255,0.8)',
+                extraCssText: 'box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);',
+                textStyle: {
+                    color: '#666',
+                },
+                formatter: '{a} <br/>{b}: {c} ({d}%)'
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {
+                        show: true
+                    }
+                }
+            },
+            title: {
+                text: '各行业投诉占比',
+                //subtext: '2017年10月',
+                x: 'center',
+                y: 'center',
+                textStyle: {
+                    fontWeight: 'normal',
+                    //fontSize: 16
+                    color: '#fff'
+                }
+            },
+            backgroundColor: '#000',
+            legend: {
+                orient: 'horizontal',
+                //right: 50,
+                //top: 'center',
+                bottom: 10,
+                data: data_name,
+                textStyle: {
+                    color: "#fff",
+                    //fontWeight: 'bold'
+                },
+                // data:['交通旅游','休闲娱乐','医疗健康','教育培训','农资绿植','生活服务','图书音像','其他','箱包皮具','汽车用品','医药保健','珠宝礼品','虚拟商品','运动户外','个护化妆','母婴','餐饮美食','电脑办公','家用电器','手机数码','食品酒水','家居家装','服装服饰']
+            },
+            series: [{
+                name: '零售量',
+                type: 'pie',
+                radius: ['40%', '60%'],
+                avoidLabelOverlap: true,
+                data: data,
+                itemStyle: {
+                    normal: {
+                        // borderColor: '#FFFFFF',//描边色
+                        borderWidth: 3
+                    }
+                },
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'center',
+                        //formatter: '{b}\n{d}%',
+                        textStyle: {
+                            color: '#fff'
+                        },
+                    },
+                    emphasis: {
+                        show: false, //中间提示文字
+                        textStyle: {
+                            //fontSize: '16',
+                        },
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: true
+                    }
+                },
+
+            }]
+        };
+
+        myChart.setOption(option);
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>扬中物价大数据分析平台</title>
+    <link rel="stylesheet" href="./css/bootstrap-3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="num"></div>
+        <!-- 头部 -->
+        <header>
+            <div class="logoBox">
+                <img src="images/logo_l.png" alt="" class="logo-l">
+                <img src="images/logo.png" alt="" class="logo">
+                <img src="images/logo_r.png" alt="" class="logo-r">
+            </div>
+            <div class="running">
+                <span>已安全运行</span>
+                <span class="running-time count">15</span>
+                <span>天</span>
+            </div>
+        </header>
+
+        <main class="main">
+            <!-- 左侧 -->
+            <div class="main_left">
+                <ul>
+                    <li>
+                        <div class="li_after"></div>
+                        <div class="li_before"></div>
+                        <div class="echarts_box_name">
+                            <h3>价格指数环比</h3>
+                        </div>
+                        <div class="echarts_box">
+                            <div id="pie_market_price" class="pie_box">
+                                <div id="pie_market_echarts" style="width:100%;height:100%;"></div>
+                            </div>
+                            <div id="pie_shop_price" class="pie_box">
+                                <div id="pie_shop_echarts" style="width:100%;height:100%;"></div>
+                            </div>
+                            <div id="pie_pharmacy_price" class="pie_box">
+                                <div id="pie_pharmacy_echarts" style="width:100%;height:100%;"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="li_after"></div>
+                        <div class="li_before"></div>
+                        <div class="echarts_box_name">
+                            <h3>菜场价格指数近12个月走势图</h3>
+                        </div>
+                        <div class="echarts_box">
+                            <div id="linear_market_echarts" style="width: 100%;height: 100%;"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="li_after"></div>
+                        <div class="li_before"></div>
+                        <div class="echarts_box_name">
+                            <h3>平价商店价格指数近12个月走势图</h3>
+                        </div>
+                        <div class="echarts_box">
+                            <div id="linear_shop_echarts" style="width: 100%;height: 100%;"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="li_after"></div>
+                        <div class="li_before"></div>
+                        <div class="echarts_box_name">
+                            <h3>药店价格指数近12个月走势图</h3>
+                        </div>
+                        <div class="echarts_box">
+                            <div id="linear_pharmacy_echarts" style="width: 100%;height: 100%;"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="li_after"></div>
+                        <div class="li_before"></div>
+                        <div class="echarts_box_name">
+                            <h3>最新楼盘均价</h3>
+                        </div>
+                        <div class="echarts_box">
+                            <div class="pie_box property">
+                                <div class="new"><span>最新</span></div>
+                                <div class="property_info price_up">
+                                    <i></i>
+                                    <div class="property_price count" data-to="11319">11319</div>
+                                    <div class="unit">&nbsp;元/㎡</div>
+                                </div>
+                                <div class="property_tips">相比前一个月</div>
+                            </div>
+                            <div class="pie_box">
+                                <div id="pie_property_echarts1" style="width:100%;height:100%;"></div>
+                            </div>
+                            <div class="pie_box">
+                                <div id="pie_property_echarts2" style="width:100%;height:100%;"></div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 中间 -->
+            <div class="main_center">
+                <div class="total">
+                    <ul>
+                        <li>
+                            <div class="total_num color_blue count" data-to="100">100</div>
+                            <div class="total_type">监控总数</div>
+                        </li>
+                        <li>
+                            <div class="total_num color_green count" data-to="520">520</div>
+                            <div class="total_type">监控商品种类</div>
+                        </li>
+                        <li>
+                            <div class="total_num color_orange count" data-to="12250">12250</div>
+                            <div class="total_type">监控价格信息量</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="classify">
+                    <ul>
+                        <li>
+                            <div class="classify_num color_red count" data-to="2000">2000</div>
+                            <div class="classify_type">监控农贸商品数</div>
+                        </li>
+                        <li>
+                            <div class="classify_num color_red2 count" data-to="1000">1000</div>
+                            <div class="classify_type">监控日用商品数</div>
+                        </li>
+                        <li>
+                            <div class="classify_num color_blue2 count" data-to="200">200</div>
+                            <div class="classify_type">监控农资种类</div>
+                        </li>
+                        <li>
+                            <div class="classify_num color_green2 count" data-to="32">32</div>
+                            <div class="classify_type">监控药品数</div>
+                        </li>
+                        <li>
+                            <div class="classify_num color_green3 count" data-to="66">66</div>
+                            <div class="classify_type">监控楼盘数</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="map">
+                    <div class="map_operate">
+                        <div class="echarts_box_name">
+                            <h3>物价采集信息展示</h3>
+                        </div>
+                        <div class="changeBtn">
+                            <ul>
+                                <li class="active"><i></i>菜场</li>
+                                <li><i></i>药店</li>
+                                <li><i></i>超市</li>
+                                <li><i></i>商店</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="map_echarts" style="width: 100%;height:66vh"></div>
+                </div>
+            </div>
+
+            <!-- 右侧 -->
+            <div class="main_right">
+                <ul>
+                    <li>
+                        <div class="li_after"></div>
+                        <div class="li_before"></div>
+                        <div class="echarts_box_name">
+                            <h3>本月价格波动最大商品</h3>
+                        </div>
+                        <div class="echarts_box">
+                            <div id="radioBar_shop" style="width:100%;height:100%;"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="li_after"></div>
+                        <div class="li_before"></div>
+                        <div class="echarts_box_name">
+                            <h3>监控点价格预警商品</h3>
+                        </div>
+                        <div class="echarts_box">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>监控点</th>
+                                        <th>商品</th>
+                                        <th>最新价格（元）</th>
+                                        <th>变化率</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>新坝镇菜场</td>
+                                        <td>白菜</td>
+                                        <td>12.50</td>
+                                        <td class="up">20%<i></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>新坝镇菜场</td>
+                                        <td>白菜</td>
+                                        <td>12.50</td>
+                                        <td class="down">20%<i></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>新坝镇菜场</td>
+                                        <td>白菜</td>
+                                        <td>12.50</td>
+                                        <td class="up">20%<i></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>新坝镇菜场</td>
+                                        <td>白菜</td>
+                                        <td>12.50</td>
+                                        <td class="down">20%<i></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>新坝镇菜场</td>
+                                        <td>白菜</td>
+                                        <td>12.50</td>
+                                        <td class="up">20%<i></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>新坝镇菜场</td>
+                                        <td>白菜</td>
+                                        <td>12.50</td>
+                                        <td class="down">20%<i></i></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="li_after"></div>
+                        <div class="li_before"></div>
+                        <div class="echarts_box_name">
+                            <h3>最新商品价格变化排行</h3>
+                        </div>
+                        <div class="echarts_box">
+                            <div id="radioBar_newShop" style="width:100%;height:100%;"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </main>
+    </div>
+
+</body>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/echarts.min.js"></script>
+<script src="./js/count.js"></script>
+<script src="./js/index.js"></script>
+
+</html>
